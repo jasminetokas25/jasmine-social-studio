@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jasmine Social Studio | Social Media Management by Jasmine Tokas</title>
+<meta name="description" content="Jasmine Tokas offers social media management, content strategy, Instagram design, reels planning and influencer research for small businesses, startups and creators.">
+<meta property="og:title" content="Jasmine Social Studio">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237A2E3A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23FFF8F3'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:description" content="Your brand deserves to be seen, heard and remembered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<style>
+:root{--bg:#FAF6F0;--bg2:#F1E8DC;--blush:#F2D9D6;--ink:#3B2B25;--muted:#6E5A50;--wine:#7A2E3A;--card:#FFFDF9;--line:#E3D6C6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#1E1715;--bg2:#2A201D;--blush:#4A2F32;--ink:#F3E9E1;--muted:#C9B8AC;--wine:#E8A5AE;--card:#261C19;--line:#3D2E29}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1E1715;--bg2:#2A201D;--blush:#4A2F32;--ink:#F3E9E1;--muted:#C9B8AC;--wine:#E8A5AE;--card:#261C19;--line:#3D2E29}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.65;margin:0}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05}
+.muted{color:var(--muted)}.wine{color:var(--wine)}
+.eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--wine);font-weight:600}
+.btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;font-weight:500;font-size:.95rem;transition:transform .25s,background .25s,color .25s;cursor:pointer;border:1px solid var(--wine);text-align:center}
+.btn:hover{transform:translateY(-2px)}.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+.btn-p{background:var(--wine);color:#FFF8F3}.btn-p:hover{background:var(--ink)}
+.btn-o{color:var(--wine);background:transparent}.btn-o:hover{background:var(--blush)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1.25rem;transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px -22px rgba(90,67,56,.45)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.card:hover,.btn:hover{transform:none}}
+.tile{border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.field{width:100%;background:var(--card);border:1px solid var(--line);border-radius:.8rem;padding:.8rem 1rem;color:var(--ink);font:inherit}
+.chip{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--wine);color:var(--wine);border-radius:999px;padding:.15rem .65rem;display:inline-block}
+.sticky-nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.modal-bg{position:fixed;inset:0;z-index:50;background:rgba(30,23,21,.6);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:1.5rem 1rem}
+.ig{background:#fff;border:1px solid var(--line);border-radius:.9rem;overflow:hidden;color:#3B2B25;margin:0;font-size:.78rem}
+.ig-h{display:flex;align-items:center;gap:.5rem;padding:.55rem .7rem;font-weight:600}
+.ig-av{width:22px;height:22px;border-radius:50%;background:#7A2E3A;color:#FFF8F3;display:grid;place-items:center;font-size:.7rem;font-family:"Cormorant Garamond",Georgia,serif;flex:none}
+.ig-sq{aspect-ratio:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-size:1.05rem;line-height:1.2;color:#3B2B25}
+.ig-f{display:flex;gap:.6rem;padding:.55rem .7rem 0}
+.ig figcaption{padding:.3rem .7rem .8rem;line-height:1.45}
+.sl{flex:0 0 200px;aspect-ratio:4/5;border-radius:.9rem;padding:1rem;display:flex;flex-direction:column;justify-content:space-between;color:#3B2B25;border:1px solid var(--line)}
+.sl .serif{font-size:1.5rem}.sl small{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}.sl-d{background:#7A2E3A;color:#FFF8F3}
+.rl{aspect-ratio:9/16;border-radius:.9rem;padding:.7rem;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;font-size:.72rem;line-height:1.3;color:#3B2B25;border:1px solid var(--line)}
+.rl-d{background:#7A2E3A;color:#FFF8F3}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+/* ============ EDIT HERE: all your content lives in this CONFIG object ============ */
+const CONFIG = {
+  brand: "Jasmine Social Studio",
+  name: "Jasmine Tokas",
+  tagline: "Your brand deserves to be seen, heard and remembered.",
+  email: "jasminetokas25@gmail.com",
+  instagram: "https://www.instagram.com/jasminetokas27/",
+  linkedin: "https://www.linkedin.com/in/jasmine-t-173012391/",
+  whatsapp: "",    // digits with country code, e.g. "919876543210". Leave "" to hide the WhatsApp option
+};
+const SERVICES = [
+  ["ig","Social Media Management","You receive regular posting, community replies and a consistent brand voice across your profile."],
+  ["plan","Content Planning & Strategy","You receive content pillars, formats and goals, so every post has a clear purpose."],
+  ["car","Instagram Posts & Carousels","You receive on-brand post and carousel designs, ready to publish."],
+  ["reel","Reels Planning & Editing","You receive reel concepts, scripts and edits made from your own footage."],
+  ["cap","Captions & Copywriting","You receive warm, natural captions written in your brand’s voice."],
+  ["inf","Influencer Research & Outreach","You receive a shortlist of fitting creators and professional outreach messages."],
+  ["aud","Social Media Audits","You receive a friendly review of your profile and content, with clear next steps."],
+  ["cal","Monthly Content Calendars","You receive a month of ideas, formats and posting days, planned in advance."],
+];
+const ICONS = {ig:"<rect x='4' y='4' width='16' height='16' rx='4'/><circle cx='12' cy='12' r='3.2'/><circle cx='16.8' cy='7.2' r='.6'/>",plan:"<path d='M4 20V10M10 20V4M16 20v-7M2 20h20'/>",car:"<rect x='7' y='5' width='10' height='14' rx='2'/><path d='M3 8v8M21 8v8'/>",reel:"<rect x='4' y='4' width='16' height='16' rx='3'/><path d='M10 9l5 3-5 3z'/>",cap:"<path d='M5 6h14M5 11h14M5 16h9'/>",inf:"<circle cx='9' cy='8' r='3'/><path d='M3.5 19c.6-3.3 3-5 5.5-5s4.9 1.7 5.5 5M17 8v6M14 11h6'/>",aud:"<circle cx='11' cy='11' r='6'/><path d='M16 16l4 4'/>",cal:"<rect x='4' y='5' width='16' height='15' rx='2'/><path d='M4 10h16M9 3v4M15 3v4'/>"};
+const PROJECTS = [
+  {title:"Café Social Media Campaign",tag:"Concept Project",tint:"#F2D9D6",glyph:"☕",
+   blurb:"A cosy neighbourhood café, planned around mornings, regulars and the people behind the counter.",
+   objective:"Help a small independent café feel like a daily ritual for locals, and bring in new walk-ins through shareable moments.",
+   audience:"College students, remote workers and young professionals within a short distance of the café.",
+   strategy:["Pillar 1: Menu moments (signature drinks, seasonal items)","Pillar 2: The people (baristas, regulars, small stories)","Pillar 3: The space (study corners, golden-hour seats)","Pillar 4: Community (polls, recommendations, local collabs)"],
+   posts:["Flat-lay of the signature drink with the day’s special on a handwritten card","A “seat of the day” photo with a short line about who it suits best","Behind-the-bar candid with a barista’s favourite order"],
+   carousels:["5 drinks to order if you’re new here","A study-session survival kit, café edition","From bean to cup in 6 slides"],
+   reels:["Slow pour of the signature latte with soft ambient audio","“Order for me” challenge with a barista picking a drink","Morning opening routine in 15 seconds"],
+   captions:["Some mornings need a warm cup and a quiet corner. Yours is waiting.","Can’t decide? Tell us your mood and we’ll pick your drink.","The best study playlist is the sound of the espresso machine."],
+   calendar:[["Week 1","Menu spotlight post, barista intro reel, poll story"],["Week 2","Carousel: drinks for first-timers, seat of the day, café tour reel"],["Week 3","Community post (local recommendations), flat-lay, behind-the-bar story"],["Week 4","Seasonal special reveal, regular’s story, month recap carousel"]]},
+  {title:"Fashion Brand Instagram Strategy",tag:"Sample Work",tint:"#EADFD0",glyph:"✂",
+   blurb:"An Instagram direction for an emerging clothing label, built around styling and storytelling.",
+   objective:"Position a small fashion label as a considered, wearable brand and move followers from browsing to saving and shopping.",
+   audience:"Women aged 18–30 who value everyday style, versatility and brands with a clear point of view.",
+   strategy:["Pillar 1: Styling (one piece, three ways)","Pillar 2: Craft (fabrics, details, making)","Pillar 3: Lookbooks (seasonal mood and colour)","Pillar 4: Customer style (reshares and fit notes)"],
+   posts:["Single-piece hero shot on a clean neutral backdrop","Fabric close-up with a short note on how it feels and wears","Outfit grid: weekday, brunch, evening"],
+   carousels:["One kurta, three looks","How to read our size guide","The colour story of the season"],
+   reels:["Get ready with me using the new drop","Packing an order with care (ASMR style)","Quick try-on with fit notes"],
+   captions:["Made to be worn on repeat. Styled three ways, loved every way.","Details you notice only when you get close.","Which look would you pick for Friday night?"],
+   calendar:[["Week 1","Teaser carousel, fabric close-up, styling reel"],["Week 2","Launch post, try-on reel, story Q&A on sizing"],["Week 3","Lookbook carousel, customer style reshare, packing reel"],["Week 4","Behind-the-craft post, styling poll, month moodboard"]]},
+  {title:"Travel Brand Content Strategy",tag:"Concept Project",tint:"#E6D5C3",glyph:"✈",
+   blurb:"A content plan for a small travel brand that sells slow, thoughtful trips over checklist tourism.",
+   objective:"Inspire trust and curiosity by sharing destinations through helpful, story-led content that makes planning feel easy.",
+   audience:"First-time and budget-conscious travellers aged 20–35, including friend groups and solo explorers.",
+   strategy:["Pillar 1: Destination guides (where, when, how)","Pillar 2: Itineraries (2 to 5 day plans)","Pillar 3: Travel tips (packing, budgeting, safety basics)","Pillar 4: Traveller stories (community and moments)"],
+   posts:["Single stunning destination frame with a “save for later” prompt","Budget breakdown graphic for a weekend trip","Packing list for a mountain getaway"],
+   carousels:["48 hours in a hill town: a gentle itinerary","Travel mistakes to skip on your first trip","Best months to visit, at a glance"],
+   reels:["A day in one place, cut to a calm beat","3 things to know before you book","Packing a bag in 20 seconds"],
+   captions:["Slow trips, full memories. Save this for your next long weekend.","Plan less, notice more.","Where would you go if you had three free days?"],
+   calendar:[["Week 1","Destination spotlight, packing carousel, “where next?” poll"],["Week 2","Itinerary carousel, tips reel, traveller question box"],["Week 3","Budget graphic, hidden-gem post, story series on a route"],["Week 4","Traveller story, month’s best moments reel, planning checklist"]]},
+  {title:"Beauty Brand Social Media Campaign",tag:"Sample Work",tint:"#F4DEDA",glyph:"✿",
+   blurb:"A gentle skincare campaign built on education, routines and honest, simple language.",
+   objective:"Build trust for a small skincare brand by teaching simple routines and showing products in real daily use.",
+   audience:"Young adults aged 18–28 who are new to skincare and want routines that feel simple and affordable.",
+   strategy:["Pillar 1: Education (ingredients explained plainly)","Pillar 2: Routines (morning, night, minimal)","Pillar 3: Product in use (texture, application)","Pillar 4: Community (questions, myths, reshares)"],
+   posts:["Texture swatch on a soft pink backdrop with one key ingredient","Morning vs night routine side-by-side","Myth vs fact graphic"],
+   carousels:["A 3-step routine for beginners","Ingredients decoded: what they do","How to patch test properly"],
+   reels:["Application routine in real time, no filters","Answering a common skincare question in 20 seconds","Shelf tour: what goes where in the routine"],
+   captions:["Skincare can be simple. Three steps, every day, that’s it.","Know what’s in your bottle. Swipe to decode.","Your skin doesn’t need ten steps. It needs consistency."],
+   calendar:[["Week 1","Brand intro, ingredient carousel, routine reel"],["Week 2","Myth vs fact post, product-in-use reel, Q&A story"],["Week 3","Beginner routine carousel, texture post, community reshare"],["Week 4","Patch test guide, shelf tour reel, month recap"]]},
+];
+const EXPERIENCE = {role:"Influencer Marketing Intern",org:"The Socials Originals",dur:"4 months",
+  points:[["Influencer research","Identified and shortlisted creators by niche, audience fit and content style."],["Creator outreach","Contacted creators and kept communication clear and professional."],["Campaign coordination","Helped coordinate timelines and deliverables between creators and the team."],["Engagement and audience insights","Looked at engagement metrics and audience details to judge creator suitability."],["Internal collaboration","Worked with internal teams to keep campaigns moving."]]};
+const PACKAGES = [
+  {name:"Starter",price:"₹2,000",items:["8 static posts or carousels","Caption writing","Basic content planning"]},
+  {name:"Growth",price:"₹3,500",hot:true,items:["8 posts","4 reels using client-provided footage","Story content","Monthly content calendar"]},
+  {name:"Complete",price:"₹5,000",items:["12 posts","8 reels using client-provided footage","Story planning","Content calendar","Basic monthly performance report"]},
+];
+/* ============ end of editable content ============ */
+
+const h = htm.bind(React.createElement);
+const {useState,useEffect,useRef} = React;
+const Ic=({k})=>h`<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML=${{__html:ICONS[k]}}/>`;
+
+function Rv({children,className=""}){
+  const r=useRef(null);
+  useEffect(()=>{const el=r.current;if(!el)return;
+    if(!("IntersectionObserver" in window)){el.classList.add("in");return}
+    const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){el.classList.add("in");o.disconnect()}},{threshold:.12});
+    o.observe(el);return()=>o.disconnect()},[]);
+  return h`<div ref=${r} className=${"rv "+className}>${children}</div>`;
+}
+const Head=({eyebrow,title,sub})=>h`<${Rv} className="mb-12 max-w-2xl"><p className="eyebrow mb-3">${eyebrow}</p><h2 className="serif text-4xl md:text-5xl">${title}</h2>${sub&&h`<p className="muted mt-4">${sub}</p>`}<//>`;
+const NAV=[["about","About"],["services","Services"],["work","Work"],["experience","Experience"],["pricing","Pricing"],["contact","Contact"]];
+
+function Nav(){
+  const [open,setOpen]=useState(false);
+  return h`<header className="sticky-nav"><nav className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between" aria-label="Main">
+    <a href="#top" className="serif text-2xl wine flex items-center gap-2"><span className="ig-av" style=${{width:30,height:30,fontSize:"1rem"}}>J</span>${CONFIG.brand}</a>
+    <div className="hidden md:flex gap-7 text-sm">${NAV.map(([id,l])=>h`<a key=${id} href=${"#"+id} className="muted hover:text-[var(--wine)] transition-colors">${l}</a>`)}</div>
+    <a href="#contact" className="btn btn-p hidden md:inline-block !py-2 !px-5 text-sm">Hire me</a>
+    <button className="md:hidden wine text-2xl" aria-label="Toggle menu" aria-expanded=${open} onClick=${()=>setOpen(!open)}>${open?"✕":"☰"}</button>
+  </nav>
+  ${open&&h`<div className="md:hidden px-5 pb-5 flex flex-col gap-3">${NAV.map(([id,l])=>h`<a key=${id} href=${"#"+id} onClick=${()=>setOpen(false)} className="py-1">${l}</a>`)}</div>`}</header>`;
+}
+
+function Hero(){
+  return h`<section id="top" className="max-w-6xl mx-auto px-5 pt-14 pb-24 grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <p className="eyebrow mb-5">${CONFIG.name} · Freelance Social Media Management</p>
+      <h1 className="serif text-5xl md:text-7xl">Turning ideas into content that <em className="wine">connects.</em></h1>
+      <p className="muted mt-6 max-w-lg text-lg">I help brands build their online presence through thoughtful content, creative storytelling and strategic social media management.</p>
+      <p className="mt-4 max-w-lg">Hi, I’m Jasmine, a BTech CSE student at Bennett University and a freelancer who loves the space where creativity meets strategy.</p>
+      <p className="mt-6 text-sm flex items-center gap-2"><span className="wine">●</span>4-month Influencer Marketing Internship at The Socials Originals</p><div className="mt-6 flex flex-wrap gap-3"><a href="#work" className="btn btn-p">View My Work</a><a href="#contact" className="btn btn-o">Let’s Work Together</a></div>
+    </div>
+    <div className="relative max-w-sm mx-auto w-full" aria-hidden="true">
+      <div className="ig" style=${{padding:"1.1rem",borderRadius:"1.5rem",boxShadow:"0 30px 60px -30px rgba(90,67,56,.5)",transform:"rotate(-1.5deg)"}}>
+        <div className="flex items-center gap-3 mb-4"><span className="ig-av" style=${{width:46,height:46,fontSize:"1.4rem"}}>J</span><div className="leading-tight"><b>Jasmine Social Studio</b><br/><span style=${{color:"#6E5A50"}}>Content · Strategy · Social</span></div></div>
+        <div className="grid grid-cols-3 gap-1.5">${[["#F2D9D6","Plan"],["#FAF6F0","Create"],["#7A2E3A","Share"],["#EADFD0","Story"],["#F4DEDA","Voice"],["#FAF6F0","Brand"],["#7A2E3A","Reel"],["#F2D9D6","Caption"],["#EADFD0","Calendar"]].map(([bg,t],i)=>h`<div key=${t} className="serif flex items-center justify-center rounded-lg text-center text-sm aspect-square" style=${{background:bg,color:bg==="#7A2E3A"?"#FFF8F3":"#3B2B25",border:"1px solid #E3D6C6"}}>${t}</div>`)}</div>
+      </div>
+      <div className="ig absolute -bottom-5 -right-2 px-4 py-3" style=${{borderRadius:"1rem",boxShadow:"0 14px 30px -16px rgba(90,67,56,.5)"}}><span className="eyebrow">Sample content</span><br/>Concept work, not client posts</div>
+    </div></section>`;
+}
+
+function About(){
+  return h`<section id="about" className="py-24" style=${{background:"var(--bg2)"}}><div className="max-w-6xl mx-auto px-5 grid md:grid-cols-5 gap-12">
+    <${Rv} className="md:col-span-2"><p className="eyebrow mb-3">About me</p><h2 className="serif text-4xl md:text-5xl">Creative at heart, technical by training.</h2><//>
+    <${Rv} className="md:col-span-3 space-y-4 text-lg"><p>I’m ${CONFIG.name}, a first-year BTech CSE student at Bennett University who found her way to social media through curiosity about how brands tell stories online.</p>
+      <p className="muted">I spent four months as an Influencer Marketing Intern at The Socials Originals, where I researched creators, reached out to them, looked at engagement metrics and helped coordinate between creators and internal teams. That gave me a real view of what makes content work on both sides.</p>
+      <p className="muted">I’m now starting my freelance journey, and I’m especially excited to work with small businesses, startups, creators, cafés, fashion, beauty and travel brands. I’m honest about where I am: I’m building my client portfolio, and I bring care, fresh ideas and a structured way of working to every project.</p>
+      <p className="muted">My interests span content writing, content strategy and brand building, with a technical mindset that helps me plan, organise and learn quickly.</p><//></div></section>`;
+}
+
+function Services(){
+  return h`<section id="services" className="max-w-6xl mx-auto px-5 py-24"><${Head} eyebrow="Services" title="How I can help your brand" sub="Pick one service or combine several into a plan that fits your goals."/>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">${SERVICES.map(([g,t,d],i)=>h`<${Rv} key=${t}><div className="card p-6 h-full"><div className="tile h-16 w-16 mb-5 wine" style=${{background:i%2?"var(--bg2)":"var(--blush)"}} aria-hidden="true"><${Ic} k=${g}/></div><h3 className="serif text-2xl mb-2">${t}</h3><p className="muted text-sm">${d}</p></div><//>`)}</div></section>`;
+}
+
+function Work({onOpen}){
+  return h`<section id="work" className="py-24" style=${{background:"var(--bg2)"}}><div className="max-w-6xl mx-auto px-5"><${Head} eyebrow="Portfolio" title="Concept projects and sample work" sub="These are conceptual projects I created to show how I think and plan. They are not real client accounts, and no results are claimed."/>
+    <div className="grid md:grid-cols-2 gap-6">${PROJECTS.map((p,i)=>h`<${Rv} key=${p.title}><button onClick=${()=>onOpen(p)} className="card w-full text-left overflow-hidden block" aria-label=${"Open case study: "+p.title}>
+      <div className="h-44 p-6 flex flex-col justify-between" style=${{background:p.tint,color:"#7A2E3A"}} aria-hidden="true"><span className="eyebrow">Instagram concept</span><span className="serif text-5xl">${p.title.split(" ")[0]}</span></div>
+      <div className="p-6"><span className="chip mb-3">${p.tag}</span><h3 className="serif text-3xl mb-2">${p.title}</h3><p className="muted text-sm mb-4">${p.blurb}</p><span className="wine text-sm font-medium">Read case study →</span></div></button><//>`)}</div></div></section>`;
+}
+
+const Sv=({d})=>h`<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"><path d=${d}/></svg>`;
+const MockPost=({p,t,c,i})=>h`<figure className="ig"><div className="ig-h"><span className="ig-av">J</span><span>Sample brand</span></div><div className="ig-sq serif" style=${{background:i%2?"#FAF6F0":p.tint}}>${t}</div><div className="ig-f"><${Sv} d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/><${Sv} d="M4 5h16v11H9l-5 4z"/></div><figcaption>${c}</figcaption></figure>`;
+function Case({p,onClose}){
+  const btn=useRef(null);
+  useEffect(()=>{const k=e=>e.key==="Escape"&&onClose();document.addEventListener("keydown",k);document.body.style.overflow="hidden";btn.current&&btn.current.focus();
+    return()=>{document.removeEventListener("keydown",k);document.body.style.overflow=""}},[]);
+  const L=(t,a)=>h`<div className="mb-7"><h4 className="eyebrow mb-3">${t}</h4><ul className="space-y-2">${a.map(x=>h`<li key=${x} className="flex gap-3"><span className="wine">•</span><span>${x}</span></li>`)}</ul></div>`;
+  return h`<div className="modal-bg" onClick=${onClose}><div role="dialog" aria-modal="true" aria-label=${p.title} className="card max-w-3xl w-full my-4" style=${{transform:"none"}} onClick=${e=>e.stopPropagation()}>
+    <div className="p-7 md:p-10"><div className="flex justify-between items-start gap-4 mb-6"><div><span className="chip mb-3">${p.tag}</span><h3 className="serif text-4xl">${p.title}</h3><p className="muted text-sm mt-2">Conceptual work. Not a real client project. Content below is sample material, with no performance results.</p></div>
+      <button ref=${btn} onClick=${onClose} className="btn btn-o !px-4 !py-2" aria-label="Close case study">✕</button></div>
+    <div className="mb-7"><h4 className="eyebrow mb-3">Brand objective</h4><p>${p.objective}</p></div>
+    <div className="mb-7"><h4 className="eyebrow mb-3">Target audience</h4><p>${p.audience}</p></div>
+    ${L("Content strategy overview",p.strategy)}
+    <div className="mb-8"><h4 className="eyebrow mb-3">Sample Instagram posts and captions</h4><div className="grid sm:grid-cols-3 gap-4">${p.posts.map((t,i)=>h`<${MockPost} key=${i} p=${p} t=${t} c=${p.captions[i]} i=${i}/>`)}</div></div>
+    <div className="mb-8"><h4 className="eyebrow mb-3">Carousel examples (cover slides)</h4><div className="flex gap-4 overflow-x-auto pb-2">${p.carousels.map((t,i)=>h`<div key=${i} className=${"sl"+(i%3===2?" sl-d":"")} style=${i%3===2?{}:{background:i%3===0?p.tint:"#FAF6F0"}}><small>0${i+1} / 0${p.carousels.length}</small><span className="serif">${t}</span><small>Swipe →</small></div>`)}</div></div>
+    <div className="mb-8"><h4 className="eyebrow mb-3">Reel cover concepts</h4><div className="grid grid-cols-3 gap-3 sm:gap-4">${p.reels.map((t,i)=>h`<div key=${i} className=${"rl"+(i%3===1?" rl-d":"")} style=${i%3===1?{}:{background:i%3===0?p.tint:"#FAF6F0"}}><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z"/></svg><span>${t}</span></div>`)}</div></div>
+    <div><h4 className="eyebrow mb-3">Sample content calendar (1 month)</h4><div className="grid sm:grid-cols-2 gap-3">${p.calendar.map(([w,t])=>h`<div key=${w} className="rounded-xl p-4" style=${{background:"var(--bg2)"}}><b className="wine">${w}</b><p className="text-sm mt-1">${t}</p></div>`)}</div></div>
+    <div className="mt-8"><a href="#contact" onClick=${onClose} className="btn btn-p">Want something like this?</a></div></div></div></div>`;
+}
+
+function Experience(){
+  return h`<section id="experience" className="max-w-6xl mx-auto px-5 py-24"><${Head} eyebrow="Experience" title="Where I’ve learned so far"/>
+    <${Rv}><div className="card p-8 md:p-10"><div className="flex flex-wrap justify-between gap-2 mb-6"><div><h3 className="serif text-3xl">${EXPERIENCE.role}</h3><p className="wine font-medium">${EXPERIENCE.org}</p></div><span className="chip self-start">${EXPERIENCE.dur}</span></div>
+    <ol className="border-l-2 ml-2 space-y-6" style=${{borderColor:"var(--line)"}}>${EXPERIENCE.points.map(([t,d])=>h`<li key=${t} className="relative pl-7"><span className="absolute -left-[7px] top-2 w-3 h-3 rounded-full" style=${{background:"var(--wine)"}}></span><h4 className="font-semibold">${t}</h4><p className="muted text-sm">${d}</p></li>`)}</ol></div><//></section>`;
+}
+
+function Pricing(){
+  return h`<section id="pricing" className="py-24" style=${{background:"var(--bg2)"}}><div className="max-w-6xl mx-auto px-5"><${Head} eyebrow="Pricing" title="Simple monthly packages"/>
+    <div className="grid md:grid-cols-3 gap-6">${PACKAGES.map(p=>h`<${Rv} key=${p.name}><div className="card p-8 h-full flex flex-col" style=${p.hot?{borderColor:"var(--wine)",borderWidth:2}:{}}>
+      ${p.hot&&h`<span className="chip self-start mb-3">Most popular</span>`}<h3 className="serif text-3xl">${p.name}</h3><p className="mt-2"><span className="serif text-5xl wine">${p.price}</span><span className="muted"> / month</span></p>
+      <ul className="mt-6 space-y-2 flex-1">${p.items.map(i=>h`<li key=${i} className="flex gap-3"><span className="wine">✓</span><span>${i}</span></li>`)}</ul>
+      <a href="#contact" className=${"btn mt-8 "+(p.hot?"btn-p":"btn-o")}>Choose ${p.name}</a></div><//>`)}</div>
+    <p className="muted text-sm mt-8 text-center">These packages are introductory offers, and final deliverables can be customised to your brand’s needs. Follower growth, engagement and sales cannot be guaranteed.</p></div></section>`;
+}
+
+function Contact(){
+  const [f,setF]=useState({name:"",email:"",svc:"Social Media Management",msg:""});
+  const [note,setNote]=useState("");
+  const set=k=>e=>setF({...f,[k]:e.target.value});
+  const send=e=>{e.preventDefault();
+    if(!CONFIG.email){setNote("The contact email hasn’t been set up yet. Please try Instagram or LinkedIn below once available.");return}
+    const body=`Hi Jasmine,\n\n${f.msg}\n\nService: ${f.svc}\nFrom: ${f.name} (${f.email})`;
+    window.location.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent("Project enquiry from "+f.name)}&body=${encodeURIComponent(body)}`;
+    setNote("Your email app should open with the message ready to send. If nothing opens, email me directly at "+CONFIG.email+".")};
+  const links=[["Email",CONFIG.email&&"mailto:"+CONFIG.email,CONFIG.email],["Instagram",CONFIG.instagram,"@jasminetokas27"],["LinkedIn",CONFIG.linkedin,"Jasmine Tokas"],["WhatsApp",CONFIG.whatsapp&&"https://wa.me/"+CONFIG.whatsapp.replace(/\D/g,""),"Message me"]].filter(l=>l[1]);
+  return h`<section id="contact" className="max-w-6xl mx-auto px-5 py-24 grid md:grid-cols-2 gap-14">
+    <${Rv}><p className="eyebrow mb-3">Contact</p><h2 className="serif text-4xl md:text-5xl">Let’s create something meaningful together.</h2><p className="muted mt-5 max-w-md">Tell me about your brand, your goals and what you’d like help with. I’ll reply with ideas and next steps.</p>
+      <ul className="mt-8 space-y-3">${links.map(([l,u,t])=>h`<li key=${l} className="flex gap-3"><b className="w-24">${l}</b>${u?h`<a className="wine underline" href=${u} target=${l==="Email"?undefined:"_blank"} rel="noopener noreferrer">${t}</a>`:h`<span className="muted">Coming soon</span>`}</li>`)}</ul><//>
+    <${Rv}><form onSubmit=${send} className="card p-7 space-y-4" style=${{transform:"none"}}>
+      <label className="block text-sm">Your name<input required className="field mt-1" value=${f.name} onChange=${set("name")}/></label>
+      <label className="block text-sm">Email<input required type="email" className="field mt-1" value=${f.email} onChange=${set("email")}/></label>
+      <label className="block text-sm">I’m interested in<select className="field mt-1" value=${f.svc} onChange=${set("svc")}>${[...SERVICES.map(s=>s[1]),"Not sure yet"].map(s=>h`<option key=${s}>${s}</option>`)}</select></label>
+      <label className="block text-sm">Message<textarea required rows="4" className="field mt-1" value=${f.msg} onChange=${set("msg")}></textarea></label>
+      <button className="btn btn-p w-full" type="submit">Send message</button><p role="status" className="text-sm wine">${note}</p></form><//></section>`;
+}
+
+function App(){
+  const [open,setOpen]=useState(null);
+  return h`<div><${Nav}/><main><${Hero}/><${About}/><${Services}/><${Work} onOpen=${setOpen}/><${Experience}/><${Pricing}/><${Contact}/></main>
+    <footer className="border-t py-10 text-center text-sm muted px-5" style=${{borderColor:"var(--line)"}}><p className="serif text-2xl wine mb-1">${CONFIG.brand}</p><p>${CONFIG.tagline}</p><p className="mt-3">© 2026 ${CONFIG.name}. Portfolio projects are concept or sample work.</p></footer>
+    ${open&&h`<${Case} p=${open} onClose=${()=>setOpen(null)}/>`}</div>`;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h`<${App}/>`);
+</script>
+</body>
+</html>
